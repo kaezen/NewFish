@@ -9,8 +9,15 @@ public class EventListener : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FishingEvents.current.onStartFishing += OnStartFishing;
         FishingEvents.current.onChangeBodyOfWater += OnChangeBodyOfWater;
         FishingEvents.current.onChangeTimeOfDay += OnChangeTimeOfDay;
+    }
+
+    private void OnStartFishing()
+    {
+        helper.GoFishing();
+        print("event recieved: Going Fishing");
     }
 
     private void OnChangeBodyOfWater(fishEnums.BodyOfWaterType bodyOfWaterType)

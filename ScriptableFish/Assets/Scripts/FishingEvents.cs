@@ -11,6 +11,16 @@ public class FishingEvents : MonoBehaviour
         if(current != this) current = this;
     }
 
+    public event Action onStartFishing;
+
+    public void StartFishing()
+    {
+        if(onStartFishing != null)
+        {
+            onStartFishing();
+        }
+    }
+
     public event Action<fishEnums.BodyOfWaterType> onChangeBodyOfWater;
     public void ChangeBodyOfWater(fishEnums.BodyOfWaterType bodyOfWaterType)
     {

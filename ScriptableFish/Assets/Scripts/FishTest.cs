@@ -6,6 +6,7 @@ using UnityEditor;
 [ExecuteAlways]
 public class FishTest : MonoBehaviour
 {
+    [Tooltip("The list of fish in the game. Make sure to update it if you have made more fish!")]
     public FishDataCollection fishList;
     [Space(20)]
 
@@ -28,11 +29,13 @@ public class FishTest : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) GoFishing();
+       // if (Input.GetKeyDown(KeyCode.Return)) GoFishing();
     }
 
     public void GoFishing()
     {
+        listOfFishToCatch.Clear();
+       
         foreach(FishData f in fishList.fishList)
         {
             listOfFishToCatch.Add(f);
@@ -53,17 +56,7 @@ public class FishTest : MonoBehaviour
             //it will instead not be added and we move to the next fish
 
         //compare all the parameters to weed out possibilities
-        /*
-        if(!f.bodyOfWaterTypes.Contains(bodyOfWaterType) || !f.bodyOfWaterTypes.Contains(fishEnums.BodyOfWaterType.Any) || !(bodyOfWaterType == fishEnums.BodyOfWaterType.Any))
-            {
-                continue;
-            }
-            if (!f.TimesOfDay.Contains(timeOfDay))
-            {
-                continue;
-            }
-                fishAvailableToCatch.Add(f);
-        */
+     
         //region below works**
             #region
             //check body of water
@@ -104,7 +97,6 @@ public class FishTest : MonoBehaviour
         //randomly select fish
         if (fishAvailableToCatch.Count != 0)
         {
-
             int i = Random.Range(0, fishAvailableToCatch.Count);
             Debug.Log(i);
             caughtFish = fishAvailableToCatch[i];

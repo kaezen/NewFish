@@ -15,6 +15,7 @@ MonoBehaviour:
   _fishList:
   - {fileID: 11400000, guid: 67b837a4a024c3a4993e8756464fad15, type: 2}
   - {fileID: 11400000, guid: 6987857f3d2eeec41b16d56d36d6be36, type: 2}
+  - {fileID: 11400000, guid: d45a98aec3e68cc4ea7f5126c99229b1, type: 2}
   - {fileID: 11400000, guid: 396b57ccc07039149b01e749df758ad2, type: 2}
   - {fileID: 11400000, guid: 5d6d6149741a39d458137a896cd02812, type: 2}
   - {fileID: 11400000, guid: cd73fafba8a562e4ab8f257a3c534a2c, type: 2}

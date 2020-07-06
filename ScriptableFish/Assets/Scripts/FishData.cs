@@ -6,17 +6,15 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "New Fish", menuName ="New Fish")]
 public class FishData : ScriptableObject
 {
-    public new string name;
+    public List<fishEnums.BodyOfWaterType> bodyOfWaterTypes = new List<fishEnums.BodyOfWaterType>();    
+    public List<fishEnums.TimeOfDay> TimesOfDay = new List<fishEnums.TimeOfDay>();
+    public List<fishEnums.Attractant> attractants = new List<fishEnums.Attractant>();
+    public List<fishEnums.ToolRequired> toolsRequired = new List<fishEnums.ToolRequired>();
+    public List<fishEnums.CastingRange> castingRanges = new List<fishEnums.CastingRange>();
+    public List<fishEnums.EnticeMethod> enticeMethods = new List<fishEnums.EnticeMethod>();
+    public List<fishEnums.RetrievalMethod> retrievalMethods = new List<fishEnums.RetrievalMethod>();
 
-    public List<fishEnums.BodyOfWaterType> bodyOfWaterTypes;    
-    public List<fishEnums.TimeOfDay> TimesOfDay;
-    public List<fishEnums.Attractant> attractants;
-    public List<fishEnums.ToolRequired> toolsRequired;
-    public List<fishEnums.CastingRange> castingRanges;
-    public List<fishEnums.EnticeMethod> enticeMethods;
-    public List<fishEnums.RetrievalMethod> retrievalMethods;
-
-    /*
+    
     public FishData()
     {
         bodyOfWaterTypes.Add(fishEnums.BodyOfWaterType.Any);
@@ -27,5 +25,5 @@ public class FishData : ScriptableObject
         enticeMethods.Add(fishEnums.EnticeMethod.Any);
         retrievalMethods.Add(fishEnums.RetrievalMethod.Any);
     }
-    */
+    
 }
