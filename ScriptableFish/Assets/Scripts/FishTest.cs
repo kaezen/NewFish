@@ -8,83 +8,121 @@ public class FishTest : MonoBehaviour
 {
     [Tooltip("The list of fish in the game. Make sure to update it if you have made more fish!")]
     public FishDataCollection fishList;
-    [Space(20)]
 
-    public fishEnums.BodyOfWaterType bodyOfWaterType;
-    public fishEnums.TimeOfDay timeOfDay;
-    public fishEnums.Attractant attractant;
-    public fishEnums.ToolRequired toolRequired;
-    public fishEnums.CastingRange castingRange;
-    public fishEnums.EnticeMethod enticeMethod;
-    public fishEnums.RetrievalMethod retrievalMethod;
+    public fishEnums.BodyOfWaterType BodyOfWaterType 
+    {
+        get { return _bodyOfWaterType; } 
+        set { _bodyOfWaterType = value; }
+    }
+    public fishEnums.TimeOfDay TimeOfDay 
+    {
+        get { return _timeOfDay; }
+        set { _timeOfDay = value; }
+    }
+    public fishEnums.Attractant Attractant
+    {
+        get { return _attractant; }
+        set { _attractant = value; }
+    }
+    public fishEnums.ToolRequired ToolRequired
+    {
+        get { return _toolRequired; }
+        set { _toolRequired = value;  }
+    }
+    public fishEnums.CastingRange CastingRange
+    {
+        get { return _castingRange; }
+        set { _castingRange = value; } 
+    }
+    public fishEnums.EnticeMethod EnticeMethod
+    {
+        get { return _enticeMethod; }
+        set { _enticeMethod = value; }
+    }
+    public fishEnums.RetrievalMethod RetrievalMethod
+    {
+        get { return _retrievalMethod; }
+        set { _retrievalMethod = value; }
+    }
+    
+   [SerializeField]
+    private fishEnums.BodyOfWaterType _bodyOfWaterType;    
+   [SerializeField]
+    private fishEnums.TimeOfDay _timeOfDay;    
+   [SerializeField]
+    private fishEnums.Attractant _attractant;    
+   [SerializeField]
+    private fishEnums.ToolRequired _toolRequired;    
+   [SerializeField]
+    private fishEnums.CastingRange _castingRange;    
+   [SerializeField]
+    private fishEnums.EnticeMethod _enticeMethod;    
+   [SerializeField]
+    private fishEnums.RetrievalMethod _retrievalMethod;
 
     [Space(10)]
-    public List<FishData> fishAvailableToCatch;
+    [SerializeField]
+    private List<FishData> _fishAvailableToCatch;
 
-    [Space(10)]    
+    [Space(10)]
     public FishData caughtFish;
 
     [Space(20)]
-    List<FishData> listOfFishToCatch;
+    List<FishData> listOfFishToCatch = new List<FishData>();
 
     private void Update()
     {
-       // if (Input.GetKeyDown(KeyCode.Return)) GoFishing();
+        // if (Input.GetKeyDown(KeyCode.Return)) GoFishing();
     }
 
     public void GoFishing()
     {
         listOfFishToCatch.Clear();
-       
-        foreach(FishData f in fishList.fishList)
+
+        foreach (FishData f in fishList.fishList)
         {
             listOfFishToCatch.Add(f);
         }
 
         print("Going fishing");
-        fishAvailableToCatch.Clear();
+        _fishAvailableToCatch.Clear();
         caughtFish = null;
 
         //take the list of fish we have
         foreach (FishData f in listOfFishToCatch)
         {
-            Debug.Log("Checking fish: " + f.name);
-            //bool addFish = false;
+            //Debug.Log("Checking fish: " + f.name);
+            
+            //compare all the parameters to weed out possibilities
 
-            //we are going to assume the fish will be added to the list
-            //if it turns out the fish does not match the components required
-            //it will instead not be added and we move to the next fish
-
-        //compare all the parameters to weed out possibilities
-     
-        //region below works**
+            //region below works**
             #region
             //check body of water
-            if (f.bodyOfWaterTypes.Contains(bodyOfWaterType) 
-                || f.bodyOfWaterTypes.Contains(fishEnums.BodyOfWaterType.Any) 
-                || bodyOfWaterType == fishEnums.BodyOfWaterType.Any)
+            if (f.bodyOfWaterTypes.Contains(_bodyOfWaterType)
+                || f.bodyOfWaterTypes.Contains(fishEnums.BodyOfWaterType.Any)
+                || _bodyOfWaterType == fishEnums.BodyOfWaterType.Any)
             {
                 //check time of day
-                if (f.TimesOfDay.Contains(timeOfDay) 
-                    || f.TimesOfDay.Contains(fishEnums.TimeOfDay.Any) 
-                    || timeOfDay == fishEnums.TimeOfDay.Any)
+                if (f.TimesOfDay.Contains(_timeOfDay)
+                    || f.TimesOfDay.Contains(fishEnums.TimeOfDay.Any)
+                    || _timeOfDay == fishEnums.TimeOfDay.Any)
                 {
                     //check attractant
-                    if (f.attractants.Contains(attractant) 
-                        || f.attractants.Contains(fishEnums.Attractant.Any) 
-                        || attractant == fishEnums.Attractant.Any)
+                    if (f.attractants.Contains(_attractant)
+                        || f.attractants.Contains(fishEnums.Attractant.Any)
+                        || _attractant == fishEnums.Attractant.Any)
                     {
                         //check tool
-                        if (f.toolsRequired.Contains(toolRequired) 
-                            || f.toolsRequired.Contains(fishEnums.ToolRequired.Any) 
-                            || toolRequired == fishEnums.ToolRequired.Any)
+                        if (f.toolsRequired.Contains(_toolRequired)
+                            || f.toolsRequired.Contains(fishEnums.ToolRequired.Any)
+                            || _toolRequired == fishEnums.ToolRequired.Any)
                         {
                             //check casting range
-                            if (f.castingRanges.Contains(castingRange) 
-                                || f.castingRanges.Contains(fishEnums.CastingRange.Any) 
-                                || castingRange == fishEnums.CastingRange.Any)
+                            if (f.castingRanges.Contains(_castingRange)
+                                || f.castingRanges.Contains(fishEnums.CastingRange.Any)
+                                || _castingRange == fishEnums.CastingRange.Any)
                             {
-                                fishAvailableToCatch.Add(f);                                
+                                _fishAvailableToCatch.Add(f);
                             }
                         }
                     }
@@ -92,15 +130,28 @@ public class FishTest : MonoBehaviour
             }
             #endregion
         }
-     
-        
+
+        //final step of catching fish
+        ReturnCaughtFish();
+    }
+
+    private FishData ReturnCaughtFish()
+    {
         //randomly select fish
-        if (fishAvailableToCatch.Count != 0)
+        if (_fishAvailableToCatch.Count != 0)
         {
-            int i = Random.Range(0, fishAvailableToCatch.Count);
-            Debug.Log(i);
-            caughtFish = fishAvailableToCatch[i];
+            int i = Random.Range(0, _fishAvailableToCatch.Count);
+            //Debug.Log(i);
+            caughtFish = _fishAvailableToCatch[i];
+            Debug.Log("You caught a: " + caughtFish);
+            return caughtFish;
             //return caught fish
+        }
+
+        else
+        {
+            return null;
+            Debug.LogError("ERROR! no fish was caught");
         }
     }
 }
