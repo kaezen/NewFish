@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d14c32838016f7499befc9f23c70385, type: 3}
+  m_Name: Marlin
+  m_EditorClassIdentifier: 
+  name: Marlin
+  bodyOfWaterTypes: 02000000
+  TimesOfDay: 03000000
+  attractants: 00000000
+  toolsRequired: 00000000
+  castingRanges: 01000000
+  enticeMethods: 02000000
+  retrievalMethods: 02000000
