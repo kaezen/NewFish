@@ -9,16 +9,18 @@ public class FishingControllerEventListener : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FishingController.current.onStartFishing += OnStartFishing;
-        FishingController.current.onChangeBodyOfWater += OnChangeBodyOfWater;
-        FishingController.current.onChangeTimeOfDay += OnChangeTimeOfDay;
-        FishingController.current.onChangeAttractant += OnChangeAttractant;
-        FishingController.current.onChangeToolRequired += OnChangeToolRequired;
-        FishingController.current.onChangeCastingRange += OnChangeCastingRange;
-        FishingController.current.onChangeEnticeMethod += OnChangeEnticeMethod;
-        FishingController.current.onChangeRetrievalMethod += OnChangeRetrievalMethod;
+        FishingEventsController.current.onStartFishing += OnStartFishing;
+        FishingEventsController.current.onChangeBodyOfWater += OnChangeBodyOfWater;
+        FishingEventsController.current.onChangeTimeOfDay += OnChangeTimeOfDay;
+        FishingEventsController.current.onChangeAttractant += OnChangeAttractant;
+        FishingEventsController.current.onChangeToolRequired += OnChangeToolRequired;
+        FishingEventsController.current.onChangeCastingRange += OnChangeCastingRange;
+        FishingEventsController.current.onChangeEnticeMethod += OnChangeEnticeMethod;
+        FishingEventsController.current.onChangeRetrievalMethod += OnChangeRetrievalMethod;
     }
 
+    //TODO: potentially put this trigger farther down the line, only resolving fish gotten when fishing is completed
+    //TODO: OR: put the 'return fish' on a separate event trigger
     private void OnStartFishing()
     {
         helper.GoFishing();

@@ -8,7 +8,7 @@ public class TimeOfDaySetter : SetterClass
 
     public override void TriggerEvent()
     {
-        FishingController.current.ChangeTimeOfDay(TimeOfDay);
+        FishingEventsController.current.ChangeTimeOfDay(TimeOfDay);
     }
 
     public void SetValueWithInt(int x)

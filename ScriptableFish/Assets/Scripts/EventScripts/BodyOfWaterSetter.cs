@@ -8,7 +8,7 @@ public class BodyOfWaterSetter : SetterClass
 
     public override void TriggerEvent()
     {
-        FishingController.current.ChangeBodyOfWater(BodyOfWaterType);
+        FishingEventsController.current.ChangeBodyOfWater(BodyOfWaterType);
     }
     public void SetValueWithInt(int x)
     {

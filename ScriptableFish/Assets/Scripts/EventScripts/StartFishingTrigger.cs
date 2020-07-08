@@ -6,6 +6,6 @@ public class StartFishingTrigger : SetterClass
 {
     public override void TriggerEvent()
     {
-        FishingController.current.StartFishing();
+        FishingEventsController.current.StartFishing();
     }
 }

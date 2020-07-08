@@ -8,7 +8,7 @@ public class ToolSetter : SetterClass
 
     public override void TriggerEvent()
     {
-        FishingController.current.ChangeToolRequired(ToolRequired);
+        FishingEventsController.current.ChangeToolRequired(ToolRequired);
     }
 
     public void SetValueWithInt(int x)

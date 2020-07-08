@@ -9,7 +9,7 @@ public class CastingRangeSetter : SetterClass
 
     public override void TriggerEvent()
     {
-        FishingController.current.ChangeCastingRange(CastingRange);
+        FishingEventsController.current.ChangeCastingRange(CastingRange);
     }
 
     public void SetValueWithInt(int x)

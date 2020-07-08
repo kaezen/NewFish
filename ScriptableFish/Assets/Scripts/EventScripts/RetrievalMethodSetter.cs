@@ -9,7 +9,7 @@ public class RetrievalMethodSetter : SetterClass
 
     public override void TriggerEvent()
     {
-        FishingController.current.ChangeRetrievalMethod(RetrievalMethod);
+        FishingEventsController.current.ChangeRetrievalMethod(RetrievalMethod);
     }
 
     public void SetValueWithInt(int x)

@@ -8,7 +8,7 @@ public class AttractantSetter : SetterClass
 
     public override void TriggerEvent()
     {
-        FishingController.current.ChangeAttractant(Attractant);
+        FishingEventsController.current.ChangeAttractant(Attractant);
     }
 
     public void SetValueWithInt(int x)

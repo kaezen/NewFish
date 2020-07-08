@@ -9,7 +9,7 @@ public class EnticeMethodSetter : SetterClass
 
     public override void TriggerEvent()
     {
-        FishingController.current.ChangeEnticeMethod(EnticeMethod);
+        FishingEventsController.current.ChangeEnticeMethod(EnticeMethod);
     }
 
     public void SetValueWithInt(int x)
