@@ -60,7 +60,7 @@ public class UseItemStateMachine : MonoBehaviour
                     {
                         u = gameObject.AddComponent<UseRodStateMachine>();                        
                     }
-                    if(_playerTool == typeof(ToolRodData))
+                    //if(_playerTool == typeof(ToolRodData))
                     
                     if (u != null)
                     {
