@@ -9,4 +9,10 @@ public class ToolSpearData : ToolData
     {
         ToolType = fishEnums.ToolRequired.Spear;
     }
+    public override ToolStateMachine CreateStateMachine(GameObject parent)
+    {
+        ToolStateMachine stateMachine = parent.AddComponent<UseSpearStateMachine>();
+
+        return stateMachine;
+    }
 }

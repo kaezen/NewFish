@@ -9,4 +9,10 @@ public class ToolRodData : ToolData
     {
         ToolType = fishEnums.ToolRequired.Rod;
     }
+    public override ToolStateMachine CreateStateMachine(GameObject parent)
+    {
+        ToolStateMachine stateMachine = parent.AddComponent<UseRodStateMachine>();
+
+        return stateMachine;
+    }
 }

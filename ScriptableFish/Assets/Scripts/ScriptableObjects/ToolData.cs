@@ -7,8 +7,8 @@ public abstract class ToolData : ScriptableObject
 {
     [Tooltip("Do not leave this on 'Any' or 'None'")]
     public fishEnums.ToolRequired ToolType = fishEnums.ToolRequired.None;
-    public fishEnums.EnticeMethod EnticeMethod = fishEnums.EnticeMethod.Any;
     public fishEnums.CastingRange CastingRange = fishEnums.CastingRange.Any;
+    public fishEnums.EnticeMethod EnticeMethod = fishEnums.EnticeMethod.Any;
     public fishEnums.RetrievalMethod RetrievalMethod = fishEnums.RetrievalMethod.Any;
 
     private void OnValidate()
@@ -18,4 +18,6 @@ public abstract class ToolData : ScriptableObject
             Debug.LogError(this.name + " must have a specific tooltype, not 'Any' or 'None'.", this);
         }
     }
+
+    public abstract ToolStateMachine CreateStateMachine(GameObject parent);    
 }
