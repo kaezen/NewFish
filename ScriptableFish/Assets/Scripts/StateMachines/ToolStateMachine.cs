@@ -6,7 +6,8 @@ public abstract class ToolStateMachine : MonoBehaviour
 {
     [SerializeField]
     public UseItemStateMachine parentStateMachine;
-    
+    [SerializeField]
+    public Transform _fishingLocation;
     public ToolData PlayerTool
     {
         get { return _playerTool; }
@@ -14,7 +15,9 @@ public abstract class ToolStateMachine : MonoBehaviour
     }
     [SerializeField]
     private ToolData _playerTool;
-    public abstract void Initialize(UseItemStateMachine parent, ToolData tool);
+    public abstract void Initialize(UseItemStateMachine parent, ToolData tool, Transform location);
+
+    public abstract bool Execute();
 
     //check the options the player has selected in his tool and generate components for that
     public abstract void CreateAssets();

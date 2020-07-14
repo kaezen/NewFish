@@ -6,7 +6,7 @@ public class UseSpearStateMachine : ToolStateMachine
 {
 
     //TODO: Create reference to player's fishing spear
-    public override void Initialize(UseItemStateMachine parent, ToolData tool)
+    public override void Initialize(UseItemStateMachine parent, ToolData tool, Transform location)
     {
         Debug.Log("Let's go!");
         parentStateMachine = parent;
@@ -21,10 +21,9 @@ public class UseSpearStateMachine : ToolStateMachine
     }
 
 
-    // Update is called once per frame
-    void Update()
+    public override bool Execute()
     {
-
+        return false;
     }
 
 }

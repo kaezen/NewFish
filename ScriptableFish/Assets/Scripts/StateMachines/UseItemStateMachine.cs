@@ -10,12 +10,13 @@ public class UseItemStateMachine : MonoBehaviour
     [SerializeField]
     private fishEnums.ToolRequired _playerTool = fishEnums.ToolRequired.None;
 
-
+    [SerializeField]
+    private Transform _fishingLocation;
 
     public ToolData Tool1;
 
-
-    private int _fishingState = 0;
+    [SerializeField]
+    private int _useItemState = 0;
 
     private ToolStateMachine _toolStateMachine = null;
     private void Start()
@@ -29,7 +30,7 @@ public class UseItemStateMachine : MonoBehaviour
         if (_isFishing)
         {
             //we use this state machine to track the player's progress through the states of fishing
-            switch (_fishingState)
+            switch (_useItemState)
             {
                 case 1:
                     //detect what tool the player is using
@@ -42,13 +43,13 @@ public class UseItemStateMachine : MonoBehaviour
                     if (_playerTool != fishEnums.ToolRequired.None || _playerTool != fishEnums.ToolRequired.Any)
                     {
                         //once we're done calculating what the player has, we move onto next state
-                        _fishingState = 2;
+                        _useItemState = 2;
                     }
                     else
                     {
                         Debug.LogError("ERROR: Player attempting to fish with improper tool equipped.");
                         Debug.LogError("Tool must not have 'any' or 'none' as it's type");
-                        _fishingState = 0;
+                        _useItemState = 0;
                     }
                     break;
 
@@ -61,9 +62,9 @@ public class UseItemStateMachine : MonoBehaviour
 
                     if (_toolStateMachine != null)
                     {
-                        _toolStateMachine.Initialize(this, Tool1);
+                        _toolStateMachine.Initialize(this, Tool1,_fishingLocation);
                         //change to state 3 to wait for the tool
-                        _fishingState = 3;
+                        _useItemState = 3;
                     }
                     else
                     {
@@ -73,6 +74,7 @@ public class UseItemStateMachine : MonoBehaviour
 
                 case 3:
                     //wait for that tool to finish
+                    _toolStateMachine.Execute();
 
                     break;
                 case 4:
@@ -84,7 +86,7 @@ public class UseItemStateMachine : MonoBehaviour
             }
 
             //break out of fishing state
-            if (_fishingState == 0)
+            if (_useItemState == 0)
             {
                 //TODO: send event to cancel fishing / undo whatever was set by starting fishing
                 _isFishing = false;
@@ -93,7 +95,7 @@ public class UseItemStateMachine : MonoBehaviour
         }
         else
         {
-            _fishingState = 0;
+            _useItemState = 0;
         }
     }
 
@@ -101,6 +103,6 @@ public class UseItemStateMachine : MonoBehaviour
     private void OnStartFishing()
     {
         _isFishing = true;
-        _fishingState = 1;
+        _useItemState = 1;
     }
 }
