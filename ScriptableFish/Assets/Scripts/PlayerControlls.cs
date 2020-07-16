@@ -12,24 +12,36 @@ public class PlayerControlls : MonoBehaviour
     public float cameraClamp = 45;
     public bool invert = true;
 
-    // Update is called once per frame
+    public GameObject cameraTarget;
+
+    [SerializeField]
+    private bool _playerControlsActive = true;
+
+    private void Start()
+    {
+        FishingEventsController.current.onStartFishing += TogglePlayerControls;
+    }
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (_playerControlsActive)
         {
-            transform.position += transform.forward * speed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position -= transform.forward * speed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position -= transform.right * speed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += transform.right * speed * Time.deltaTime;
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.position += transform.forward * speed * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.position -= transform.forward * speed * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position -= transform.right * speed * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += transform.right * speed * Time.deltaTime;
+            }
         }
         // do camera rotation
 
@@ -48,6 +60,11 @@ public class PlayerControlls : MonoBehaviour
 
 
 
-        transform.eulerAngles = new Vector3(cameraY, cameraX, 0);
+        cameraTarget.transform.eulerAngles = new Vector3(cameraY, cameraX, 0);
+    }
+    private void TogglePlayerControls()
+    {
+        _playerControlsActive = !_playerControlsActive;
+        Debug.Log("Player controls: " + _playerControlsActive);
     }
 }

@@ -7,4 +7,5 @@ public class CastingComponentHolder : MonoBehaviour
     public GameObject FishingTarget;
     public GameObject FishingProgress;
     public GameObject LaunchArc;
+    public GameObject CastingTarget;
 }

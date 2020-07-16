@@ -21,7 +21,7 @@ public class UseItemStateMachine : MonoBehaviour
     private ToolStateMachine _toolStateMachine = null;
     private void Start()
     {
-        FishingEventsController.current.onStartFishing += OnStartFishing;
+        FishingEventsController.current.onStartFishing += FishingToggle;
     }
 
     private void Update()
@@ -100,9 +100,11 @@ public class UseItemStateMachine : MonoBehaviour
     }
 
 
-    private void OnStartFishing()
+    private void FishingToggle()
     {
-        _isFishing = true;
-        _useItemState = 1;
+        _isFishing = !_isFishing;
+        if(_isFishing) _useItemState = 1;
+        //TODO: delete added components when fishing is done
+        if (!_isFishing) _useItemState = 0;
     }
 }

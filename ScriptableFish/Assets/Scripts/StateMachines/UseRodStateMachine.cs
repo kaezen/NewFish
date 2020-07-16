@@ -6,12 +6,12 @@ public class UseRodStateMachine : ToolStateMachine
 {
     private CastingStateMachine _castingStateMachine;
     private EnticeStateMachine _enticeStateMachine;
-    private RetrievalStateMachine _retrievalStateMachine;
-
-
+    private RetrievalStateMachine _retrievalStateMachine;    
 
     [SerializeField]
-    private int _castingState;
+    private int _rodFishingState;
+
+    ToolRodData playerRod;
 
     //TODO: Create reference to player's fishing rod
     public override void Initialize(UseItemStateMachine parent, ToolData tool, Transform location)
@@ -21,30 +21,36 @@ public class UseRodStateMachine : ToolStateMachine
 
         parentStateMachine = parent;
         PlayerTool = tool;
+        playerRod = (ToolRodData)PlayerTool;
         CreateAssets();
-        _castingState = 1;
+        _rodFishingState = 1;
     }
 
     //check the options the player has selected in his tool and generate components for that
     //create appropriate methods for each component of the tool
     public override void CreateAssets()
     {
-        _castingStateMachine = CreateCastingRange();
+        _castingStateMachine = CreateCastingStateMachine();
         _castingStateMachine.Initialize(_fishingLocation);
         _enticeStateMachine = CreateEnticeMethod();
         _retrievalStateMachine = CreateRetrievalMethod();        
     }
     public override bool Execute()
     {
-        switch (_castingState)
+        switch (_rodFishingState)
         {
             case 0://initial state
                 CreateAssets();
-                _castingState = 1;
+                _rodFishingState = 1;
                 return true;
                 break;
             case 1: //casting state
-                _castingStateMachine.Execute();
+                bool stateTest = _castingStateMachine.Execute();
+                //Debug.Log(stateTest);
+                if(!stateTest)
+                {
+                    _rodFishingState = 2;
+                }
                 return true;
                 break;
             case 2: 
@@ -58,18 +64,25 @@ public class UseRodStateMachine : ToolStateMachine
     }
 
 
-    public CastingStateMachine CreateCastingRange()
+    public CastingStateMachine CreateCastingStateMachine()
     {
-        //casting range
-        if (PlayerTool.CastingRange == fishEnums.CastingRange.Close)
-        {
-            Debug.Log("Found Casting: Close");
-        }
-        else if (PlayerTool.CastingRange == fishEnums.CastingRange.Far)
-        {
-            Debug.Log("Found Casting: Far");
-        }
-        return gameObject.AddComponent<CastingStateMachine>();
+        ////casting range
+        //if (PlayerTool.CastingRange == fishEnums.CastingRange.Close)
+        //{
+        //    Debug.Log("Found Casting: Close");
+        //}
+        //else if (PlayerTool.CastingRange == fishEnums.CastingRange.Far)
+        //{
+        //    Debug.Log("Found Casting: Far");
+        //}
+        CastingStateMachine c = null;
+
+        if (playerRod.castingType == ToolEnums.CastType.chasing) return gameObject.AddComponent<CastingChasingStateMachine>();
+        if (playerRod.castingType == ToolEnums.CastType.waiting) return gameObject.AddComponent<CastingWaitingStateMachine>();
+        if (playerRod.castingType == ToolEnums.CastType.pulsing) return gameObject.AddComponent<CastingPulsingStateMachine>();
+        
+
+        return null;
     }
     public EnticeStateMachine CreateEnticeMethod()
     {
