@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class ToolComponentReferences : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //This is a master script for holding Prefab references and potentially scriptable objects so they can be built in the scene
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject CastingWaitingPrefab;
+    public GameObject CastingChasingPrefab;
+    public GameObject CastingPulsingPrefab;
 }

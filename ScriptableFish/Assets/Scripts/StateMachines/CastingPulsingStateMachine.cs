@@ -11,7 +11,6 @@ public class CastingPulsingStateMachine : CastingStateMachine
 
     private GameObject _fishingTarget;
     private GameObject _fishingProgress;
-    private GameObject _launchArc;
     private GameObject _castingTarget;
 
     [SerializeField]
@@ -26,24 +25,22 @@ public class CastingPulsingStateMachine : CastingStateMachine
     [SerializeField]
     private float _initialCastingSpeed = 5;
 
-    [Tooltip("This is how long it takes for the progress circle to catch up to the target")]
-    [SerializeField]
-    private float _progressTimerBase = 10;
-    private float _progressTimer = 0;
+    //[Tooltip("This is how long it takes for the progress circle to catch up to the target")]
+    //[SerializeField]
+    //private float _progressTimerBase = 10;
+    //private float _progressTimer = 0;
 
-    public override void Initialize(Transform location)
+    public override void Initialize(Transform location, ToolComponentReferences references)
     {
-        GameObject g = GameObject.Find("CastingHelper");
+        GameObject g = GameObject.Find("CastingPulsing");
         //_helper = Instantiate(resources.castingPrefab, location.transform.position, location.transform.rotation, this.transform);
         _helper = Instantiate(g, location.transform.position, location.transform.rotation, this.transform);
         CastingComponentHolder c = _helper.GetComponent<CastingComponentHolder>();
         _fishingTarget = c.FishingTarget;
         _fishingProgress = c.FishingProgress;
-        _launchArc = c.LaunchArc;
         _castingTarget = c.CastingTarget;
 
         _fishingProgress.SetActive(false);
-        _launchArc.SetActive(false);
         _castingTarget.SetActive(false);
 
         _fishingState = 1;
@@ -57,16 +54,17 @@ public class CastingPulsingStateMachine : CastingStateMachine
             case 1:
                 if (Input.GetMouseButton(0))
                 {
-                    Debug.Log("Going out");
+                    //Debug.Log("Going out");
                     _fishingTarget.transform.position += _fishingTarget.transform.forward * _initialCastingSpeed * Time.deltaTime;
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
-                    _progressTimer = 0;
+                    //_progressTimer = 0;
                     _fishingProgress.SetActive(true);
-                    _fishingProgress.transform.position = _fishingTarget.transform.position;                    
+                    _fishingProgress.transform.position = _fishingTarget.transform.position;
+                    _castingTarget.SetActive(true);
                     _castingTarget.transform.parent = null;
-                    _fishingTarget.SetActive(false);
+                    _fishingTarget.SetActive(true);
                     _castingTarget.transform.position = _fishingTarget.transform.position;
                     _fishingTarget.transform.localScale = Vector3.one * 2;                    
 
@@ -80,7 +78,7 @@ public class CastingPulsingStateMachine : CastingStateMachine
                 //float size = Mathf.Sin(Time.deltaTime) * _oscilationMultiplier;
                 float size = Mathf.PingPong(Time.time, _oscilationMultiplier) + _minimumScale;
 
-                _castingTarget.transform.localScale = new Vector3(size, 1, size);
+                _castingTarget.transform.localScale = new Vector3(size, .05f, size);
 
 
                 //counting time              

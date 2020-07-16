@@ -8,7 +8,7 @@ public class UseItemStateMachine : MonoBehaviour
     private bool _isFishing = false;
 
     [SerializeField]
-    private fishEnums.ToolRequired _playerTool = fishEnums.ToolRequired.None;
+    private ToolComponentReferences references;
 
     [SerializeField]
     private Transform _fishingLocation;
@@ -34,13 +34,10 @@ public class UseItemStateMachine : MonoBehaviour
             {
                 case 1:
                     //detect what tool the player is using
-                    //TODO: need some method of easy access to the player's 'inventory' or 'currently held tool'
-
-                    //for now, we're just going to assign it
-                    _playerTool = fishEnums.ToolRequired.Rod;
+                    //TODO: need some method of easy access to the player's 'inventory' or 'currently held tool'                 
 
                     //make sure the player has a valid tool equipped
-                    if (_playerTool != fishEnums.ToolRequired.None || _playerTool != fishEnums.ToolRequired.Any)
+                    if (Tool1.ToolType != fishEnums.ToolRequired.None || Tool1.ToolType != fishEnums.ToolRequired.Any)                        
                     {
                         //once we're done calculating what the player has, we move onto next state
                         _useItemState = 2;
@@ -58,11 +55,9 @@ public class UseItemStateMachine : MonoBehaviour
 
                    _toolStateMachine= Tool1.CreateStateMachine(gameObject);
 
-                    //if(_playerTool == typeof(ToolRodData))
-
                     if (_toolStateMachine != null)
                     {
-                        _toolStateMachine.Initialize(this, Tool1,_fishingLocation);
+                        _toolStateMachine.Initialize(this, Tool1,_fishingLocation, references);
                         //change to state 3 to wait for the tool
                         _useItemState = 3;
                     }

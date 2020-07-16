@@ -24,7 +24,7 @@ public class CastingWaitingStateMachine : CastingStateMachine
 
     [Tooltip("This is how long it takes for the progress circle to catch up to the target")]
     [SerializeField]
-    private float _progressTimerBase = 10;
+    private float _progressTimerBase = 14;
     private float _progressTimer = 0;
 
     [Tooltip("Minimum amount of force applied")]
@@ -39,7 +39,7 @@ public class CastingWaitingStateMachine : CastingStateMachine
     [SerializeField]
     private float _randomForceTimer = 0;
     [SerializeField]
-    private float _randomForceTimerBase = 2;
+    private float _randomForceTimerBase = 1.5f;
     [SerializeField]
     private float _randomForceDurationTimer = 0;
     [SerializeField]
@@ -49,7 +49,7 @@ public class CastingWaitingStateMachine : CastingStateMachine
     private Vector3 _fightingForce = Vector3.zero;
 
 
-    public override void Initialize(Transform location)
+    public override void Initialize(Transform location, ToolComponentReferences references)
     {
         GameObject g = GameObject.Find("CastingHelper");
         //_helper = Instantiate(resources.castingPrefab, location.transform.position, location.transform.rotation, this.transform);

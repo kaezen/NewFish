@@ -11,6 +11,7 @@ public abstract class ToolData : ScriptableObject
     public fishEnums.EnticeMethod EnticeMethod = fishEnums.EnticeMethod.Any;
     public fishEnums.RetrievalMethod RetrievalMethod = fishEnums.RetrievalMethod.Any;
 
+
     public void OnValidate()
     {
         if (ToolType == fishEnums.ToolRequired.Any || ToolType == fishEnums.ToolRequired.None)

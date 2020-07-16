@@ -22,6 +22,6 @@ public abstract class CastingStateMachine : MonoBehaviour
     private int _fishingState = 0;
 
 
-    public abstract void Initialize(Transform location);
+    public abstract void Initialize(Transform location, ToolComponentReferences references);
     public abstract bool Execute();
 }

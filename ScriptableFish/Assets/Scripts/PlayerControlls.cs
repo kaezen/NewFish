@@ -13,6 +13,7 @@ public class PlayerControlls : MonoBehaviour
     public bool invert = true;
 
     public GameObject cameraTarget;
+    public GameObject cameraFollower;
 
     [SerializeField]
     private bool _playerControlsActive = true;
@@ -28,6 +29,9 @@ public class PlayerControlls : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W))
             {
+                transform.rotation = cameraFollower.transform.localRotation;
+                transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+                //transform.rotation = Quaternion.Euler(0, cameraFollower.transform.rotation.y, 0);
                 transform.position += transform.forward * speed * Time.deltaTime;
             }
             if (Input.GetKey(KeyCode.S))
@@ -36,11 +40,13 @@ public class PlayerControlls : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.A))
             {
-                transform.position -= transform.right * speed * Time.deltaTime;
+                transform.position -= cameraFollower.transform.right * speed * Time.deltaTime;
+                //transform.rotation *= Quaternion.Euler(-Vector3.up);
             }
             if (Input.GetKey(KeyCode.D))
             {
-                transform.position += transform.right * speed * Time.deltaTime;
+                //transform.rotation *= Quaternion.Euler(Vector3.up);
+                transform.position += cameraFollower.transform.right * speed * Time.deltaTime;
             }
         }
         // do camera rotation
@@ -61,6 +67,9 @@ public class PlayerControlls : MonoBehaviour
 
 
         cameraTarget.transform.eulerAngles = new Vector3(cameraY, cameraX, 0);
+
+        cameraFollower.transform.position = cameraTarget.transform.position;
+        cameraFollower.transform.rotation = cameraTarget.transform.rotation;
     }
     private void TogglePlayerControls()
     {

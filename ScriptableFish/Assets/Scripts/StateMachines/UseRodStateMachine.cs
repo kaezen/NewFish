@@ -14,10 +14,12 @@ public class UseRodStateMachine : ToolStateMachine
     ToolRodData playerRod;
 
     //TODO: Create reference to player's fishing rod
-    public override void Initialize(UseItemStateMachine parent, ToolData tool, Transform location)
+    public override void Initialize(UseItemStateMachine parent, ToolData tool, Transform location, ToolComponentReferences references)
     {
         //Debug.Log("Let's go!");
         _fishingLocation = location;
+
+        toolReferences = references;
 
         parentStateMachine = parent;
         PlayerTool = tool;
@@ -31,7 +33,7 @@ public class UseRodStateMachine : ToolStateMachine
     public override void CreateAssets()
     {
         _castingStateMachine = CreateCastingStateMachine();
-        _castingStateMachine.Initialize(_fishingLocation);
+        _castingStateMachine.Initialize(_fishingLocation, toolReferences);
         _enticeStateMachine = CreateEnticeMethod();
         _retrievalStateMachine = CreateRetrievalMethod();        
     }

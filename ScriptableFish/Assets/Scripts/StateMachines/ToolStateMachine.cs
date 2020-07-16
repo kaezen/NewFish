@@ -15,7 +15,9 @@ public abstract class ToolStateMachine : MonoBehaviour
     }
     [SerializeField]
     private ToolData _playerTool;
-    public abstract void Initialize(UseItemStateMachine parent, ToolData tool, Transform location);
+
+    public ToolComponentReferences toolReferences;
+    public abstract void Initialize(UseItemStateMachine parent, ToolData tool, Transform location, ToolComponentReferences references);
 
     public abstract bool Execute();
 

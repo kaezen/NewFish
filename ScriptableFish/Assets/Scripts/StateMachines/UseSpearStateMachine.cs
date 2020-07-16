@@ -6,7 +6,7 @@ public class UseSpearStateMachine : ToolStateMachine
 {
 
     //TODO: Create reference to player's fishing spear
-    public override void Initialize(UseItemStateMachine parent, ToolData tool, Transform location)
+    public override void Initialize(UseItemStateMachine parent, ToolData tool, Transform location, ToolComponentReferences references)
     {
         Debug.Log("Let's go!");
         parentStateMachine = parent;
