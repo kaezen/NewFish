@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ceb5fa6697b584dabfbd94274bba74, type: 3}
+  m_Name: CastingPulsingResources
+  m_EditorClassIdentifier: 
+  CastingPulsingPrefab: {fileID: 2522041157170888526, guid: e263d2acb91c23c438d3957e3497cdff,
+    type: 3}
+  CastingPulsingComponents: {fileID: 5784382967324231512, guid: e263d2acb91c23c438d3957e3497cdff,
+    type: 3}
+  InitialCastingSpeed: 5
+  TimeToFinishCast: 10
+  MinimumScale: 0.25
+  MaxScale: 1.5
+  PulseRate: 1.5

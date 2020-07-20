@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bb6897c2b965d408b994daa5f25c6b, type: 3}
+  m_Name: CastingChasingData
+  m_EditorClassIdentifier: 
+  CastingChasingPrefab: {fileID: 2522041157170888526, guid: cc86e55185b1f254899563a5ccede067,
+    type: 3}
+  CastingChasingComponents: {fileID: 5784382967324231512, guid: cc86e55185b1f254899563a5ccede067,
+    type: 3}
+  InitialCastingSpeed: 5
+  TimeToReachTarget: 14
+  PullForceBase: 2
+  PullForceRange: 1
+  PlayerForce: 3.5
+  TimeBetweenPulls: 1.5
+  TimeBetweenPullsRange: 0.5
+  PullDuration: 1.5
+  PullDurationRange: 0.5
+  ShowCastingArc: 1

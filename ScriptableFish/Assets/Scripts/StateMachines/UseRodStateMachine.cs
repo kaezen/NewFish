@@ -45,7 +45,6 @@ public class UseRodStateMachine : ToolStateMachine
                 CreateAssets();
                 _rodFishingState = 1;
                 return true;
-                break;
             case 1: //casting state
                 bool stateTest = _castingStateMachine.Execute();
                 //Debug.Log(stateTest);
@@ -54,7 +53,6 @@ public class UseRodStateMachine : ToolStateMachine
                     _rodFishingState = 2;
                 }
                 return true;
-                break;
             case 2: 
 
                 break;
@@ -76,8 +74,7 @@ public class UseRodStateMachine : ToolStateMachine
         //else if (PlayerTool.CastingRange == fishEnums.CastingRange.Far)
         //{
         //    Debug.Log("Found Casting: Far");
-        //}
-        CastingStateMachine c = null;
+        //}        
 
         if (playerRod.castingType == ToolEnums.CastType.chasing) return gameObject.AddComponent<CastingChasingStateMachine>();
         if (playerRod.castingType == ToolEnums.CastType.waiting) return gameObject.AddComponent<CastingWaitingStateMachine>();
@@ -91,16 +88,16 @@ public class UseRodStateMachine : ToolStateMachine
         //entice method
         if (PlayerTool.EnticeMethod == fishEnums.EnticeMethod.Predictive)
         {
-            Debug.Log("Found Entice: Predictive");
+            //Debug.Log("Found Entice: Predictive");
             //return gameObject.AddComponent<EnticePredictiveStateMachine>();
         }
         else if (PlayerTool.EnticeMethod == fishEnums.EnticeMethod.Rhythmic)
         {
-            Debug.Log("Found Entice: Rhythmic");
+            //Debug.Log("Found Entice: Rhythmic");
         }
         else if (PlayerTool.EnticeMethod == fishEnums.EnticeMethod.Random)
         {
-            Debug.Log("Found Entice: Random");
+            //Debug.Log("Found Entice: Random");
         }
         return gameObject.AddComponent<EnticeStateMachine>();
     }
@@ -108,15 +105,15 @@ public class UseRodStateMachine : ToolStateMachine
     {
         if (PlayerTool.RetrievalMethod == fishEnums.RetrievalMethod.Constant)
         {
-            Debug.Log("Found Retrival: Constant");
+            //Debug.Log("Found Retrival: Constant");
         }
         else if (PlayerTool.RetrievalMethod == fishEnums.RetrievalMethod.Instant)
         {
-            Debug.Log("Found Retrival: Instant");
+            //Debug.Log("Found Retrival: Instant");
         }
         else if (PlayerTool.RetrievalMethod == fishEnums.RetrievalMethod.OnOff)
         {
-            Debug.Log("Found Retrival: On/Off");
+            //Debug.Log("Found Retrival: On/Off");
         }
         return gameObject.AddComponent<RetrievalStateMachine>();
 

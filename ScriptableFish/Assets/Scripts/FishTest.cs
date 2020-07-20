@@ -9,6 +9,8 @@ public class FishTest : MonoBehaviour
     [Tooltip("The list of fish in the game. Make sure to update it if you have made more fish!")]
     public FishDataCollection fishList;
 
+    //TODO: add in functionality with the player tool
+
     public fishEnums.BodyOfWaterType BodyOfWaterType 
     {
         get { return _bodyOfWaterType; } 

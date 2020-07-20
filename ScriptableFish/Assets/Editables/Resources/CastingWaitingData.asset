@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e94b63b6ee0d434386275b684ec521d, type: 3}
+  m_Name: CastingWaitingData
+  m_EditorClassIdentifier: 
+  CastingWaitingPrefab: {fileID: 2522041157170888526, guid: 635cdefa477fcbb48a9e96555a07e051,
+    type: 3}
+  CastingWaitingComponents: {fileID: 0}
+  InitialCastingSpeed: 5
+  TimeToFinishCast: 14
+  PullForceBase: 2
+  PullForceRange: 1
+  PlayerForce: 3.5
+  TimeBetweenPulls: 1.5
+  TimeBetweenPullsRange: 0.5
+  PullDuration: 1.5
+  PullDurationRange: 0.5
+  CastingTargetSize: 0.15
+  ShowCastingArc: 1

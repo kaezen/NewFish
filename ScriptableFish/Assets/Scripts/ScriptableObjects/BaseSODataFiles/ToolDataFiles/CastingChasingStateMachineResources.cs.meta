@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 19bb6897c2b965d408b994daa5f25c6b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - CastingChasingPrefab: {instanceID: 0}
+  - CastingChasingComponents: {instanceID: 0}
+  - FishingTarget: {instanceID: 0}
+  - FishingProgress: {instanceID: 0}
+  - CastingTarget: {instanceID: 0}
+  - CastingArc: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

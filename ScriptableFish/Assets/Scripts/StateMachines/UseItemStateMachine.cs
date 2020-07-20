@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UseItemStateMachine : MonoBehaviour
@@ -19,11 +20,18 @@ public class UseItemStateMachine : MonoBehaviour
     private int _useItemState = 0;
 
     private ToolStateMachine _toolStateMachine = null;
+    [SerializeField]
+    private Component[] _baseList;
+
+    [SerializeField]
+    private Component[] _activeComponents;
+
     private void Start()
     {
         FishingEventsController.current.onStartFishing += FishingToggle;
+        _baseList = GetComponents<Component>();
     }
-
+    
     private void Update()
     {
         //whether or not the player is fishing
@@ -100,6 +108,23 @@ public class UseItemStateMachine : MonoBehaviour
         _isFishing = !_isFishing;
         if(_isFishing) _useItemState = 1;
         //TODO: delete added components when fishing is done
-        if (!_isFishing) _useItemState = 0;
+        if (!_isFishing)
+        {
+            _useItemState = 0;
+            Purge();
+        }
+            
+    }
+
+    private void Purge()
+    {
+        _activeComponents = GetComponents<Component>();
+        foreach(Component c in _activeComponents)
+        {
+            if (!_baseList.Contains(c))
+            {
+                Destroy(c);
+            }
+        }
     }
 }

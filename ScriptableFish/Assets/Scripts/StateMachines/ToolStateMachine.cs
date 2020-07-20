@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class ToolStateMachine : MonoBehaviour
 {
+    public ToolComponentReferences References;
+
     [SerializeField]
     public UseItemStateMachine parentStateMachine;
     [SerializeField]
